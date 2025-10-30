@@ -127,8 +127,8 @@ MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## 📧 Contact
 
-- Report Bugs: [GitHub Issues](https://github.com/your-username/your-repository/issues)
-- Feature Suggestions: [GitHub Discussions](https://github.com/your-username/your-repository/discussions)
+- Report Bugs: [GitHub Issues](https://github.com/hotylll/Sophera-AI-Assistant/issues)
+- Feature Suggestions: [GitHub Discussions](https://github.com/hotylll/Sophera-AI-Assistant/discussions)
 
 ---
 
