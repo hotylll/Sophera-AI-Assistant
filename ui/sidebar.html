@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>AI Companion Sidebar</title>
+    <link rel="stylesheet" href="sidebar.css" />
+  </head>
+  <body>
+    <div class="sidebar" id="sidebarRoot">
+      <aside class="history-panel" id="historyPanel" aria-hidden="true">
+        <div class="history-panel__header">
+          <h2 class="history-panel__title" data-i18n="historyTitle">History</h2>
+          <button class="history-panel__new" id="historyPanelNewChatButton" type="button">
+            <span class="history-panel__new-icon" aria-hidden="true">＋</span>
+            <span data-i18n="historyNewChat">New chat</span>
+          </button>
+        </div>
+        <div class="history-panel__body">
+          <div class="history-panel__empty" id="historyEmptyState" data-i18n="historyEmpty">No conversations yet</div>
+          <div class="history-panel__list" id="historyList" role="list"></div>
+        </div>
+      </aside>
+      <div class="history-overlay" id="historyOverlay" hidden></div>
+      <header class="sidebar__topbar">
+        <button class="icon-button icon-button--menu" id="menuButton" type="button" aria-label="Menu" data-i18n="menuAria" data-i18n-attr="aria-label"></button>
+        <button class="ghost-button" id="newChatButton" type="button" data-i18n="newChat">New chat</button>
+        <span class="topbar__spacer" aria-hidden="true"></span>
+        <button
+          class="icon-button icon-button--settings"
+          id="settingsButton"
+          type="button"
+          data-i18n="settingsTooltip"
+          data-i18n-attr="aria-label"
+          aria-label="Settings"
+        >
+          <span aria-hidden="true" class="icon-button__glyph">⚙️</span>
+        </button>
+      </header>
+      <main class="sidebar__main">
+        <section class="welcome" id="welcomeState">
+          <h1 class="welcome__title" data-i18n="welcomeTitle">Hello there!</h1>
+          <p class="welcome__subtitle" data-i18n="welcomeSubtitle">Start a conversation or reference a tab to include its context.</p>
+          <div class="welcome__chips" id="welcomeChips">
+            <button class="chip" type="button" data-chip="summarize"><span data-i18n="chipSummarize">Summarize this page</span></button>
+            <button class="chip" type="button" data-chip="explain"><span data-i18n="chipExplain">Explain what I'm reading</span></button>
+            <button class="chip" type="button" data-chip="translate"><span data-i18n="chipTranslate">Translate highlighted section</span></button>
+          </div>
+        </section>
+        <div class="chat-log" id="chatLog" role="log" aria-live="polite"></div>
+      </main>
+      <div class="mention-popover" id="mentionPopover" hidden>
+        <div class="mention-popover__header" data-i18n="mentionSectionTitle">Open tabs</div>
+        <ul class="mention-popover__list" id="mentionList"></ul>
+        <button class="mention-popover__retry" id="mentionReloadButton" type="button" hidden data-i18n="mentionRetry">Reload tabs</button>
+      </div>
+      <footer class="sidebar__composer">
+        <div class="composer__container">
+          <div
+            class="composer__input"
+            id="composerInput"
+            contenteditable="true"
+            role="textbox"
+            aria-multiline="true"
+            data-placeholder="Send a message or type @ to add a page…"
+          ></div>
+          <div class="composer__footer">
+            <span class="composer__hint" id="composerHint" data-i18n="mentionHint">AI responses may be incorrect, please verify carefully</span>
+            <span class="composer__status" id="statusText"></span>
+            <button class="composer__stop" id="stopButton" type="button" hidden data-i18n="stop">Stop</button>
+            <button class="send-button" id="sendButton" type="button" disabled data-i18n="send">Send</button>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script type="module" src="sidebar.js"></script>
+  </body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sophera AI Assistant</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 350px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: white;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .info-section {
+      margin-bottom: 20px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      background: #f9fafb;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    .info-icon {
+      font-size: 24px;
+      margin-right: 12px;
+    }
+
+    .info-text {
+      flex: 1;
+    }
+
+    .info-label {
+      font-size: 12px;
+      color: #6b7280;
+      margin-bottom: 2px;
+    }
+
+    .info-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1f2937;
+    }
+
+    .status-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    .status-indicator.active {
+      background: #10b981;
+    }
+
+    .status-indicator.inactive {
+      background: #ef4444;
+    }
+
+    .status-indicator.loading {
+      background: #f59e0b;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    button {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-secondary {
+      background: #f3f4f6;
+      color: #374151;
+    }
+
+    .btn-secondary:hover {
+      background: #e5e7eb;
+    }
+
+    .divider {
+      height: 1px;
+      background: #e5e7eb;
+      margin: 16px 0;
+    }
+
+    .feature-list {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #4b5563;
+    }
+
+    .feature-list li {
+      margin-left: 20px;
+      margin-bottom: 6px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 16px;
+      font-size: 11px;
+      color: #9ca3af;
+      border-top: 1px solid #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+        <h1 id="popupTitle">🤖 Sophera AI Assistant</h1>
+    <p id="popupSubtitle">Chrome Built-in AI Powered</p>
+  </div>
+
+  <div class="content">
+    <!-- API Status -->
+    <div class="info-section">
+      <div class="info-item">
+        <div class="info-icon">🌐</div>
+        <div class="info-text">
+          <div class="info-label" id="translatorLabel">Translator API</div>
+          <div class="info-value" id="translatorStatus">
+            <span class="status-indicator loading"></span><span class="status-text" id="translatorStatusText">Checking...</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">📝</div>
+        <div class="info-text">
+          <div class="info-label" id="summarizerLabel">Summarizer API</div>
+          <div class="info-value" id="summarizerStatus">
+            <span class="status-indicator loading"></span><span class="status-text" id="summarizerStatusText">Checking...</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">🤖</div>
+        <div class="info-text">
+          <div class="info-label" id="promptLabel">Prompt API</div>
+          <div class="info-value" id="promptStatus">
+            <span class="status-indicator loading"></span><span class="status-text" id="promptStatusText">Checking...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Quick Info -->
+    <div class="info-section">
+      <h3 id="howToTitle" style="font-size: 14px; margin-bottom: 12px; color: #1f2937;">How to Use</h3>
+      <ul class="feature-list">
+        <li id="howToStep1">Select any text on a webpage</li>
+        <li id="howToStep2">Click the floating toolbar buttons</li>
+        <li id="howToStep3">AI processes text locally &amp; privately</li>
+        <li id="howToStep4">Works completely offline!</li>
+      </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Action Buttons -->
+    <div class="button-group">
+      <button class="btn-primary" id="settingsBtn">
+        <span>⚙️</span>
+        <span id="settingsBtnLabel">Open Settings</span>
+      </button>
+      <button class="btn-secondary" id="helpBtn">
+        <span>❓</span>
+        <span id="helpBtnLabel">Help & Documentation</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="footer" id="popupFooter">
+    Version 1.0.0 | Privacy-First | Offline Capable
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

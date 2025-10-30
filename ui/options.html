@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sophera AI Assistant - Settings</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
+
+    :root {
+      --md-bg: #f8f9fa;
+      --md-surface: #ffffff;
+      --md-surface-variant: #eef1f6;
+      --md-outline: #dfe1e5;
+      --md-primary: #1a73e8;
+      --md-primary-dark: #1558b0;
+      --md-on-primary: #ffffff;
+      --md-text: #202124;
+      --md-text-secondary: #5f6368;
+      --md-shadow: 0 16px 40px -24px rgba(26, 115, 232, 0.45);
+      --md-radius: 16px;
+      --md-transition: 0.2s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--md-bg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: var(--md-text);
+      display: flex;
+      justify-content: center;
+      padding: 56px 32px;
+    }
+
+    .app-shell {
+      width: min(1120px, 100%);
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 32px;
+    }
+
+    .nav-pane {
+      background: var(--md-surface);
+      border-radius: var(--md-radius);
+      box-shadow: var(--md-shadow);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      position: sticky;
+      top: 48px;
+      height: max-content;
+    }
+
+    .nav-header h1 {
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    .nav-header p {
+      font-size: 14px;
+      color: var(--md-text-secondary);
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--md-text-secondary);
+      text-decoration: none;
+      transition: var(--md-transition);
+    }
+
+    .nav-link .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      font-size: 20px;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      background: rgba(26, 115, 232, 0.08);
+      color: var(--md-primary);
+      outline: none;
+    }
+
+    .nav-link:active {
+      background: rgba(26, 115, 232, 0.14);
+      color: var(--md-primary);
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .md-card {
+      background: var(--md-surface);
+      border-radius: var(--md-radius);
+      box-shadow: var(--md-shadow);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .md-card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .md-card-header .icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(26, 115, 232, 0.1);
+      display: grid;
+      place-items: center;
+      color: var(--md-primary);
+      flex-shrink: 0;
+    }
+
+    .md-card-header h2 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .section-description {
+      font-size: 14px;
+      color: var(--md-text-secondary);
+      line-height: 1.6;
+      margin-left: 60px;
+    }
+
+    .md-field {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .md-field label {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      font-size: 14px;
+      color: var(--md-text-secondary);
+      pointer-events: none;
+      transition: transform var(--md-transition), color var(--md-transition), font-size var(--md-transition);
+      background: var(--md-surface);
+      padding: 0 4px;
+    }
+
+    .md-field select,
+    .md-field textarea {
+      border: none;
+      border-radius: 12px;
+      background: var(--md-surface-variant);
+      padding: 24px 16px 12px;
+      font-size: 15px;
+      color: var(--md-text);
+      min-height: 56px;
+      transition: box-shadow var(--md-transition), background var(--md-transition);
+      resize: vertical;
+    }
+
+    .md-field textarea {
+      min-height: 120px;
+    }
+
+    .md-field select:focus,
+    .md-field textarea:focus {
+      outline: none;
+      box-shadow: inset 0 -2px 0 var(--md-primary);
+      background: var(--md-surface);
+    }
+
+    .md-field:focus-within label,
+    .md-field.has-value label {
+      transform: translateY(-18px) scale(0.9);
+      color: var(--md-primary);
+      font-weight: 500;
+    }
+
+    .field-assist {
+      font-size: 13px;
+      color: var(--md-text-secondary);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .md-field-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--md-text);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .md-toggle-group {
+      display: grid;
+      gap: 12px;
+    }
+
+    .md-switch {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-radius: 12px;
+      transition: background var(--md-transition), box-shadow var(--md-transition);
+      cursor: pointer;
+      gap: 16px;
+    }
+
+    .md-switch:hover {
+      background: rgba(32, 33, 36, 0.04);
+    }
+
+    .md-switch input[type="checkbox"] {
+      appearance: none;
+      width: 48px;
+      height: 28px;
+      background: var(--md-outline);
+      border-radius: 999px;
+      position: relative;
+      cursor: pointer;
+      transition: background var(--md-transition);
+      flex-shrink: 0;
+    }
+
+    .md-switch input[type="checkbox"]::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: transform var(--md-transition);
+    }
+
+    .md-switch input[type="checkbox"]:checked {
+      background: var(--md-primary);
+    }
+
+    .md-switch input[type="checkbox"]:checked::after {
+      transform: translateX(20px);
+    }
+
+    .md-switch-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--md-text);
+    }
+
+    .md-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .md-button {
+      position: relative;
+      overflow: hidden;
+      border-radius: 999px;
+      padding: 10px 26px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: transform var(--md-transition), box-shadow var(--md-transition), background var(--md-transition);
+    }
+
+    .md-button::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 10%, transparent 10.01%);
+      background-size: 0 0;
+      opacity: 0;
+      transition: background-size 0.4s ease, opacity 0.3s ease;
+    }
+
+    .md-button:active::before {
+      background-size: 200% 200%;
+      opacity: 1;
+    }
+
+    .md-button.contained {
+      background: var(--md-primary);
+      color: var(--md-on-primary);
+      box-shadow: var(--md-shadow);
+    }
+
+    .md-button.contained:hover {
+      background: var(--md-primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .md-button.outlined {
+      background: transparent;
+      color: var(--md-primary);
+      border: 1px solid rgba(26, 115, 232, 0.36);
+    }
+
+    .md-button.outlined:hover {
+      background: rgba(26, 115, 232, 0.08);
+    }
+
+    .info-banner {
+      font-size: 13px;
+      color: var(--md-text-secondary);
+      line-height: 1.6;
+      border-left: 3px solid rgba(26, 115, 232, 0.4);
+      padding-left: 16px;
+      margin-top: 4px;
+    }
+
+    section:target {
+      outline: 2px solid rgba(26, 115, 232, 0.2);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 960px) {
+      body {
+        padding: 24px;
+      }
+
+      .app-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-pane {
+        position: relative;
+        top: 0;
+      }
+
+      .section-description {
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 16px;
+      }
+
+      .nav-pane {
+        padding: 24px 20px;
+      }
+
+      .md-card {
+        padding: 24px;
+      }
+
+      .md-card-header .icon {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="nav-pane" aria-label="Settings navigation">
+      <div class="nav-header">
+        <h1 id="pageTitle">⚙️ Sophera AI Assistant Settings</h1>
+        <p id="pageSubtitle">Customize your AI-powered text assistant experience</p>
+      </div>
+      <nav>
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#language-card"><span class="nav-text" data-i18n="languageSectionTitle">🌐 Interface Language</span></a></li>
+          <li><a class="nav-link" href="#summarizer-card"><span class="nav-text" data-i18n="summarizerSectionTitle">📝 Summarizer Settings</span></a></li>
+          <li><a class="nav-link" href="#rewriter-card"><span class="nav-text" data-i18n="rewriterSectionTitle">✍️ Rewriter Settings</span></a></li>
+          <li><a class="nav-link" href="#enhance-card"><span class="nav-text" data-i18n="enhanceSectionTitle">✨ Prompt Enhancement</span></a></li>
+          <li><a class="nav-link" href="#input-translation-card"><span class="nav-text" data-i18n="inputTranslationSectionTitle">⌨️ Input Box Translation</span></a></li>
+          <li><a class="nav-link" href="#toolbar-card"><span class="nav-text" data-i18n="toolbarSectionTitle">🎨 Toolbar Customization</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main>
+      <section class="md-card" id="language-card" aria-labelledby="languageSectionTitle">
+        <div class="md-card-header">
+          <div class="icon"><span class="material-symbols-outlined">language</span></div>
+          <h2 id="languageSectionTitle">🌐 Interface Language</h2>
+        </div>
+        <p class="section-description" id="language-description">Configure the interface language and default AI response language used by the extension.</p>
+
+        <div class="md-field has-value">
+          <label id="uiLanguageLabel" for="uiLanguage">UI Language</label>
+          <select id="uiLanguage">
+            <option value="en">English</option>
+            <option value="zh_CN">简体中文</option>
+          </select>
+          <p class="field-assist" id="uiLanguageHint">Switch the language of toolbar, popup, and notifications</p>
+        </div>
+
+        <div class="md-field has-value">
+          <label id="responseLanguageLabel" for="responseLanguage">AI Response Language</label>
+          <select id="responseLanguage">
+            <option value="auto">Match detected language</option>
+            <option value="en">English</option>
+            <option value="zh_CN">简体中文</option>
+          </select>
+          <p class="field-assist" id="responseLanguageHint">Choose the default language for AI replies (summaries, rewrites, Ask AI, etc.)</p>
+        </div>
+
+        <div class="info-banner" id="languageNote">Language changes take effect immediately for new UI elements. Reload existing toolbars if needed.</div>
+      </section>
+
+      <section class="md-card" id="summarizer-card" aria-labelledby="summarizerSectionTitle">
+        <div class="md-card-header">
+          <div class="icon"><span class="material-symbols-outlined">summarize</span></div>
+          <h2 id="summarizerSectionTitle">📝 Summarizer Settings</h2>
+        </div>
+
+        <div class="md-field has-value">
+          <label id="summaryTypeLabel" for="summaryType">Summary Type</label>
+          <select id="summaryType">
+            <option value="key-points">Key Points (bullet list)</option>
+            <option value="tldr">TL;DR (quick overview)</option>
+            <option value="teaser">Teaser (engaging highlights)</option>
+            <option value="headline">Headline (title format)</option>
+          </select>
+          <p class="field-assist" id="summaryTypeHint">Choose how you want summaries to be formatted</p>
+        </div>
+
+        <div class="md-field has-value">
+          <label id="summaryLengthLabel" for="summaryLength">Summary Length</label>
+          <select id="summaryLength">
+            <option value="short">Short (concise)</option>
+            <option value="medium">Medium (balanced)</option>
+            <option value="long">Long (detailed)</option>
+          </select>
+          <p class="field-assist" id="summaryLengthHint">Control the length of generated summaries</p>
+        </div>
+
+        <div class="md-field has-value">
+          <label id="summaryFormatLabel" for="summaryFormat">Output Format</label>
+          <select id="summaryFormat">
+            <option value="markdown">Markdown</option>
+            <option value="plain-text">Plain Text</option>
+          </select>
+          <p class="field-assist" id="summaryFormatHint">Choose the output format for summaries</p>
+        </div>
+      </section>
+
+      <section class="md-card" id="rewriter-card" aria-labelledby="rewriterSectionTitle">
+        <div class="md-card-header">
+          <div class="icon"><span class="material-symbols-outlined">edit_note</span></div>
+          <h2 id="rewriterSectionTitle">✍️ Rewriter Settings</h2>
+        </div>
+
+        <div class="md-field">
+          <label id="rewritePromptLabel" for="rewritePrompt">Custom Rewrite Prompt</label>
+          <textarea id="rewritePrompt" placeholder="Enter your custom rewrite instructions..."></textarea>
+          <p class="field-assist" id="rewritePromptHint">Customize how text should be rewritten (e.g., "Make it more formal", "Simplify for beginners")</p>
+        </div>
+      </section>
+
+      <section class="md-card" id="enhance-card" aria-labelledby="enhanceSectionTitle">
+        <div class="md-card-header">
+          <div class="icon"><span class="material-symbols-outlined">auto_fix_high</span></div>
+          <h2 id="enhanceSectionTitle">✨ Prompt Enhancement</h2>
+        </div>
+
+        <div class="md-field">
+          <label id="enhanceTemplateLabel" for="enhanceTemplate">Enhancement Template</label>
+          <textarea id="enhanceTemplate" placeholder="Enter your prompt enhancement template..."></textarea>
+          <p class="field-assist" id="enhanceTemplateHint">Template for enhancing prompts in input fields</p>
+        </div>
+      </section>
+
+      <section class="md-card" id="input-translation-card" aria-labelledby="inputTranslationSectionTitle">
+        <div class="md-card-header">
+          <div class="icon"><span class="material-symbols-outlined">keyboard</span></div>
+          <h2 id="inputTranslationSectionTitle">⌨️ Input Box Translation</h2>
+        </div>
+        <p class="section-description" id="inputTranslationDescription">Configure the triple-spacebar translation feature</p>
+
+        <div class="md-field has-value">
+          <label id="inputTranslationTargetLabel" for="inputTranslationTargetLanguage">Target Language</label>
+          <select id="inputTranslationTargetLanguage">
+            <option value="en">English</option>
+            <option value="zh_CN">简体中文</option>
+          </select>
+          <p class="field-assist" id="inputTranslationTargetHint">Select the target language for triple-space translation</p>
+        </div>
+      </section>
+
+      <section class="md-card" id="toolbar-card" aria-labelledby="toolbarSectionTitle">
+        <div class="md-card-header">
+          <div class="icon"><span class="material-symbols-outlined">tune</span></div>
+          <h2 id="toolbarSectionTitle">🎨 Toolbar Customization</h2>
+        </div>
+
+        <label class="md-field-label" id="visibleButtonsLabel">Visible Buttons</label>
+        <div class="md-toggle-group" role="group" aria-labelledby="visibleButtonsLabel">
+          <label class="md-switch" for="btn-translate">
+            <span class="md-switch-label" id="btnTranslateLabel">🌐 Translate</span>
+            <input type="checkbox" id="btn-translate" checked>
+          </label>
+          <label class="md-switch" for="btn-summarize">
+            <span class="md-switch-label" id="btnSummarizeLabel">📝 Summarize</span>
+            <input type="checkbox" id="btn-summarize" checked>
+          </label>
+          <label class="md-switch" for="btn-rewrite">
+            <span class="md-switch-label" id="btnRewriteLabel">✍️ Rewrite</span>
+            <input type="checkbox" id="btn-rewrite" checked>
+          </label>
+          <label class="md-switch" for="btn-askAI">
+            <span class="md-switch-label" id="btnAskAILabel">🤖 Ask AI</span>
+            <input type="checkbox" id="btn-askAI" checked>
+          </label>
+          <label class="md-switch" for="btn-copy">
+            <span class="md-switch-label" id="btnCopyLabel">📋 Copy</span>
+            <input type="checkbox" id="btn-copy" checked>
+          </label>
+          <label class="md-switch" for="btn-search">
+            <span class="md-switch-label" id="btnSearchLabel">🔍 Search</span>
+            <input type="checkbox" id="btn-search" checked>
+          </label>
+          <label class="md-switch" for="btn-enhance">
+            <span class="md-switch-label" id="btnEnhanceLabel">✨ Enhance</span>
+            <input type="checkbox" id="btn-enhance" checked>
+          </label>
+          <label class="md-switch" for="btn-export">
+            <span class="md-switch-label" id="btnExportLabel">💾 Export</span>
+            <input type="checkbox" id="btn-export" checked>
+          </label>
+        </div>
+        <p class="field-assist" id="visibleButtonsHint">Choose which buttons to display in the toolbar</p>
+
+        <div class="md-actions">
+          <button class="md-button outlined" id="resetBtn">Reset to Defaults</button>
+          <button class="md-button contained" id="saveBtn">Save Settings</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

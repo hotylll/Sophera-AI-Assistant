@@ -1,0 +1,26 @@
+{
+  "extensionName": {
+    "message": "Sophera AI Assistant",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Smart text assistant powered by Chrome's built-in AI. Translate, summarize, rewrite and more - all offline and private.",
+    "description": "Description of the extension"
+  },
+  "translate": {"message": "Translate"},
+  "summarize": {"message": "Summarize"},
+  "rewrite": {"message": "Rewrite"},
+  "askAI": {"message": "Ask AI"},
+  "copy": {"message": "Copy"},
+  "search": {"message": "Search"},
+  "enhance": {"message": "Enhance Prompt"},
+  "proofread": {"message": "Proofread"},
+  "export": {"message": "Export"},
+  "more": {"message": "More"},
+  "loading": {"message": "Loading..."},
+  "downloadingModel": {"message": "Downloading AI model..."},
+  "modelNotAvailable": {"message": "AI model not available on this device"},
+  "errorOccurred": {"message": "An error occurred. Please try again."},
+  "copied": {"message": "Copied to clipboard!"},
+  "selectText": {"message": "Please select some text first"}
+}

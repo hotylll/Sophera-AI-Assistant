@@ -1,0 +1,20 @@
+{
+  "extensionName": {"message": "Sophera AI 助手"},
+  "extensionDescription": {"message": "基于 Chrome 内置 AI 的智能文本助手。翻译、摘要、改写等功能 - 完全离线且保护隐私。"},
+  "translate": {"message": "AI翻译"},
+  "summarize": {"message": "智能摘要"},
+  "rewrite": {"message": "改写表达"},
+  "askAI": {"message": "AI问答"},
+  "copy": {"message": "复制"},
+  "search": {"message": "搜索"},
+  "enhance": {"message": "提示词增强"},
+  "proofread": {"message": "语法纠错"},
+  "export": {"message": "导出"},
+  "more": {"message": "更多"},
+  "loading": {"message": "加载中..."},
+  "downloadingModel": {"message": "正在下载 AI 模型..."},
+  "modelNotAvailable": {"message": "此设备不支持 AI 模型"},
+  "errorOccurred": {"message": "发生错误，请重试。"},
+  "copied": {"message": "已复制到剪贴板！"},
+  "selectText": {"message": "请先选择一些文本"}
+}
